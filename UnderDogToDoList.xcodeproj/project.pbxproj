@@ -74,6 +74,8 @@
 		6920CC78291D7DF00037E462 /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC77291D7DF00037E462 /* PhoneLoginView.swift */; };
 		6920CC7A291D7E270037E462 /* UIApplication_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC79291D7E270037E462 /* UIApplication_Extensions.swift */; };
 		6920CC7C291D7F990037E462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC7B291D7F990037E462 /* GoogleService-Info.plist */; };
+		6920CC80291D9F340037E462 /* PhoneLoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC7F291D9F340037E462 /* PhoneLoginViewModelTests.swift */; };
+		6920CC82291D9FB40037E462 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6920CC81291D9FB40037E462 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,7 @@
 		6920CC79291D7E270037E462 /* UIApplication_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication_Extensions.swift; sourceTree = "<group>"; };
 		6920CC7B291D7F990037E462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6920CC7D291D80AC0037E462 /* UnderDogToDoList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UnderDogToDoList.entitlements; sourceTree = "<group>"; };
+		6920CC7F291D9F340037E462 /* PhoneLoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6920CC82291D9FB40037E462 /* FirebaseMessaging in Frameworks */,
 				6920CC3D291D6FAE0037E462 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +249,7 @@
 		6920CBD1291D636A0037E462 /* UnderDogToDoListTests */ = {
 			isa = PBXGroup;
 			children = (
+				6920CC7E291D9F210037E462 /* Views */,
 				6920CC4E291D74930037E462 /* Networking */,
 				6920CC41291D711C0037E462 /* Mocks */,
 				6920CC3E291D702B0037E462 /* DependencyContainer */,
@@ -379,6 +384,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6920CC7E291D9F210037E462 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6920CC7F291D9F340037E462 /* PhoneLoginViewModelTests.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,6 +457,7 @@
 			name = UnderDogToDoListTests;
 			packageProductDependencies = (
 				6920CC3C291D6FAE0037E462 /* FirebaseAuth */,
+				6920CC81291D9FB40037E462 /* FirebaseMessaging */,
 			);
 			productName = UnderDogToDoListTests;
 			productReference = 6920CBCE291D636A0037E462 /* UnderDogToDoListTests.xctest */;
@@ -585,6 +599,7 @@
 				6920CC49291D71AC0037E462 /* MockEntity.swift in Sources */,
 				6920CC45291D716F0037E462 /* MockLocalStorageManager.swift in Sources */,
 				6920CC4D291D727E0037E462 /* MockFirebaseAuthService.swift in Sources */,
+				6920CC80291D9F340037E462 /* PhoneLoginViewModelTests.swift in Sources */,
 				6920CC43291D71300037E462 /* MockTokenManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1058,6 +1073,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6920CC00291D69280037E462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		6920CC81291D9FB40037E462 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6920CC00291D69280037E462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

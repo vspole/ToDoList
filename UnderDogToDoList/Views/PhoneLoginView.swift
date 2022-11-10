@@ -150,7 +150,7 @@ extension PhoneLoginView {
         
         var formattedPhoneNumber: String {
             var formattedPhoneNumber = phoneNumber.replacingOccurrences(of: "(", with: "")
-            formattedPhoneNumber = phoneNumber.replacingOccurrences(of: ")", with: "")
+            formattedPhoneNumber = formattedPhoneNumber.replacingOccurrences(of: ")", with: "")
             if !formattedPhoneNumber.hasPrefix("+1") {
                 return "+1" + formattedPhoneNumber
             }
