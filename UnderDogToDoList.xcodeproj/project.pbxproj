@@ -59,6 +59,14 @@
 		6920CC4B291D71D40037E462 /* LocalStorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC4A291D71D40037E462 /* LocalStorageManagerTests.swift */; };
 		6920CC4D291D727E0037E462 /* MockFirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC4C291D727E0037E462 /* MockFirebaseAuthService.swift */; };
 		6920CC50291D74A80037E462 /* FirebaseAuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC4F291D74A80037E462 /* FirebaseAuthServiceTests.swift */; };
+		6920CC5E291D7A210037E462 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC59291D7A210037E462 /* Quicksand-SemiBold.ttf */; };
+		6920CC5F291D7A210037E462 /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC5A291D7A210037E462 /* Quicksand-Bold.ttf */; };
+		6920CC60291D7A210037E462 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC5B291D7A210037E462 /* Quicksand-Light.ttf */; };
+		6920CC61291D7A210037E462 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC5C291D7A210037E462 /* Quicksand-Medium.ttf */; };
+		6920CC62291D7A210037E462 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC5D291D7A210037E462 /* Quicksand-Regular.ttf */; };
+		6920CC67291D7A350037E462 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC64291D7A350037E462 /* OpenSans-Regular.ttf */; };
+		6920CC68291D7A350037E462 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC65291D7A350037E462 /* OpenSans-Bold.ttf */; };
+		6920CC69291D7A350037E462 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC66291D7A350037E462 /* OpenSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +114,15 @@
 		6920CC4A291D71D40037E462 /* LocalStorageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManagerTests.swift; sourceTree = "<group>"; };
 		6920CC4C291D727E0037E462 /* MockFirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirebaseAuthService.swift; sourceTree = "<group>"; };
 		6920CC4F291D74A80037E462 /* FirebaseAuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthServiceTests.swift; sourceTree = "<group>"; };
+		6920CC52291D79790037E462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6920CC59291D7A210037E462 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		6920CC5A291D7A210037E462 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		6920CC5B291D7A210037E462 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		6920CC5C291D7A210037E462 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		6920CC5D291D7A210037E462 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		6920CC64291D7A350037E462 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		6920CC65291D7A350037E462 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		6920CC66291D7A350037E462 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +202,8 @@
 		6920CBC0291D63690037E462 /* UnderDogToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				6920CC53291D79810037E462 /* Fonts */,
+				6920CC52291D79790037E462 /* Info.plist */,
 				6920CBFD291D68760037E462 /* Networking */,
 				6920CBED291D64150037E462 /* Dependency Container */,
 				6920CBC1291D63690037E462 /* UnderDogToDoListApp.swift */,
@@ -280,6 +299,37 @@
 				6920CC4F291D74A80037E462 /* FirebaseAuthServiceTests.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		6920CC53291D79810037E462 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6920CC63291D7A260037E462 /* OpenSans */,
+				6920CC58291D7A120037E462 /* Quicksand */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		6920CC58291D7A120037E462 /* Quicksand */ = {
+			isa = PBXGroup;
+			children = (
+				6920CC5A291D7A210037E462 /* Quicksand-Bold.ttf */,
+				6920CC5B291D7A210037E462 /* Quicksand-Light.ttf */,
+				6920CC5C291D7A210037E462 /* Quicksand-Medium.ttf */,
+				6920CC5D291D7A210037E462 /* Quicksand-Regular.ttf */,
+				6920CC59291D7A210037E462 /* Quicksand-SemiBold.ttf */,
+			);
+			path = Quicksand;
+			sourceTree = "<group>";
+		};
+		6920CC63291D7A260037E462 /* OpenSans */ = {
+			isa = PBXGroup;
+			children = (
+				6920CC65291D7A350037E462 /* OpenSans-Bold.ttf */,
+				6920CC64291D7A350037E462 /* OpenSans-Regular.ttf */,
+				6920CC66291D7A350037E462 /* OpenSans-SemiBold.ttf */,
+			);
+			path = OpenSans;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,8 +471,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6920CC5E291D7A210037E462 /* Quicksand-SemiBold.ttf in Resources */,
 				6920CBC9291D636A0037E462 /* Preview Assets.xcassets in Resources */,
+				6920CC69291D7A350037E462 /* OpenSans-SemiBold.ttf in Resources */,
+				6920CC62291D7A210037E462 /* Quicksand-Regular.ttf in Resources */,
 				6920CBC6291D636A0037E462 /* Assets.xcassets in Resources */,
+				6920CC5F291D7A210037E462 /* Quicksand-Bold.ttf in Resources */,
+				6920CC68291D7A350037E462 /* OpenSans-Bold.ttf in Resources */,
+				6920CC60291D7A210037E462 /* Quicksand-Light.ttf in Resources */,
+				6920CC67291D7A350037E462 /* OpenSans-Regular.ttf in Resources */,
+				6920CC61291D7A210037E462 /* Quicksand-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +685,7 @@
 				DEVELOPMENT_TEAM = 72C98PVW56;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnderDogToDoList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -656,6 +715,7 @@
 				DEVELOPMENT_TEAM = 72C98PVW56;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnderDogToDoList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
