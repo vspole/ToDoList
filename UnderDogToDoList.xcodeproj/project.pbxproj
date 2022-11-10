@@ -70,6 +70,10 @@
 		6920CC6D291D7C8B0037E462 /* ScaledFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC6C291D7C8B0037E462 /* ScaledFont.swift */; };
 		6920CC6F291D7CB00037E462 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC6E291D7CB00037E462 /* Size.swift */; };
 		6920CC71291D7CBA0037E462 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC70291D7CBA0037E462 /* Color.swift */; };
+		6920CC75291D7D860037E462 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC74291D7D860037E462 /* MainView.swift */; };
+		6920CC78291D7DF00037E462 /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC77291D7DF00037E462 /* PhoneLoginView.swift */; };
+		6920CC7A291D7E270037E462 /* UIApplication_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC79291D7E270037E462 /* UIApplication_Extensions.swift */; };
+		6920CC7C291D7F990037E462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC7B291D7F990037E462 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +133,11 @@
 		6920CC6C291D7C8B0037E462 /* ScaledFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledFont.swift; sourceTree = "<group>"; };
 		6920CC6E291D7CB00037E462 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		6920CC70291D7CBA0037E462 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		6920CC74291D7D860037E462 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6920CC77291D7DF00037E462 /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
+		6920CC79291D7E270037E462 /* UIApplication_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication_Extensions.swift; sourceTree = "<group>"; };
+		6920CC7B291D7F990037E462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6920CC7D291D80AC0037E462 /* UnderDogToDoList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UnderDogToDoList.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +217,9 @@
 		6920CBC0291D63690037E462 /* UnderDogToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				6920CC7D291D80AC0037E462 /* UnderDogToDoList.entitlements */,
+				6920CC7B291D7F990037E462 /* GoogleService-Info.plist */,
+				6920CC73291D7D7B0037E462 /* Views */,
 				6920CC6B291D7C7E0037E462 /* Extensions */,
 				6920CC6A291D7C5A0037E462 /* Constants */,
 				6920CC53291D79810037E462 /* Fonts */,
@@ -353,8 +365,18 @@
 			isa = PBXGroup;
 			children = (
 				6920CC6C291D7C8B0037E462 /* ScaledFont.swift */,
+				6920CC79291D7E270037E462 /* UIApplication_Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6920CC73291D7D7B0037E462 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6920CC74291D7D860037E462 /* MainView.swift */,
+				6920CC77291D7DF00037E462 /* PhoneLoginView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,6 +526,7 @@
 				6920CC5F291D7A210037E462 /* Quicksand-Bold.ttf in Resources */,
 				6920CC68291D7A350037E462 /* OpenSans-Bold.ttf in Resources */,
 				6920CC60291D7A210037E462 /* Quicksand-Light.ttf in Resources */,
+				6920CC7C291D7F990037E462 /* GoogleService-Info.plist in Resources */,
 				6920CC67291D7A350037E462 /* OpenSans-Regular.ttf in Resources */,
 				6920CC61291D7A210037E462 /* Quicksand-Medium.ttf in Resources */,
 			);
@@ -539,12 +562,15 @@
 				6920CBF5291D665A0037E462 /* AppState.swift in Sources */,
 				6920CBC2291D63690037E462 /* UnderDogToDoListApp.swift in Sources */,
 				6920CC71291D7CBA0037E462 /* Color.swift in Sources */,
+				6920CC75291D7D860037E462 /* MainView.swift in Sources */,
 				6920CC6F291D7CB00037E462 /* Size.swift in Sources */,
 				6920CBF3291D66430037E462 /* Store.swift in Sources */,
 				6920CBEC291D64060037E462 /* EntityProtocol.swift in Sources */,
 				6920CBF7291D67030037E462 /* DependencyContainer.swift in Sources */,
 				6920CBEF291D64A20037E462 /* DataComponent.swift in Sources */,
 				6920CC6D291D7C8B0037E462 /* ScaledFont.swift in Sources */,
+				6920CC7A291D7E270037E462 /* UIApplication_Extensions.swift in Sources */,
+				6920CC78291D7DF00037E462 /* PhoneLoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +733,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UnderDogToDoList/UnderDogToDoList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UnderDogToDoList/Preview Content\"";
@@ -737,6 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UnderDogToDoList/UnderDogToDoList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UnderDogToDoList/Preview Content\"";
