@@ -53,7 +53,6 @@ struct UnderDogToDoListApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(viewModel: .init(container: dependencyContainer))
-                .preferredColorScheme(.light)
         }
     }
 }

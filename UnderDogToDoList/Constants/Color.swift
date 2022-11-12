@@ -8,3 +8,4 @@
 import SwiftUI
 
 let ACCENT_COLOR = Color("AccentColor")
+let TEXT_COLOR = Color("TextColor")

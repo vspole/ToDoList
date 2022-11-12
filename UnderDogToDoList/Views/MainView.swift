@@ -13,7 +13,8 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            if viewModel.isUserLoggedIn {
+            //if viewModel.isUserLoggedIn {
+            if false {
                 // TODO: Show Todo List here
             } else {
                 PhoneLoginView(viewModel: .init(container: viewModel.container, mainViewModel: viewModel))
