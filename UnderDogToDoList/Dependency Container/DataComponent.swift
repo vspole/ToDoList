@@ -29,6 +29,7 @@ extension DataComponent: StartUpProtocol {
     func startUp() {
         // On-load, retrieve any stored token from the token manager
         appState[\.userData.token] = entity.tokenManager.retrieveToken()
+        appState[\.userData.user] = entity.firebaseAuthService.getCurrentUser()
         
         // When updating the token, auto-store in the token manager
         appState.publisher(for: \.userData.token)
