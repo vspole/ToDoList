@@ -13,40 +13,48 @@ struct ToDoListView: View {
     var body: some View {
         VStack {
             searchBar
+            Spacer()
         }
+        .padding(.horizontal, MARGIN_SCREEN_LEFT_RIGHT)
     }
 }
 
 extension ToDoListView {
     var searchBar: some View {
         HStack {
-            TextField("Search ...", text: $viewModel.searchText)
-                .padding(7)
-                .padding(.horizontal, 25)
+            Image(systemName: viewModel.textFieldConfig.oppisiteImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(ACCENT_COLOR)
+                .padding(.vertical, SIZE_PADDING_XXS)
+                .onTapGesture {
+                    viewModel.imageButtonPressed()
+                }
+
+            TextField(viewModel.textFieldConfig.rawValue, text: $viewModel.textFieldText)
+                .padding(SIZE_PADDING_SMALL)
                 .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .padding(.horizontal, 10)
+                .cornerRadius(CORNER_RADIUS_TEXT_FIELD)
                 .onTapGesture {
                     viewModel.isEditing = true
                 }
                 .onSubmit {
                     viewModel.isEditing = false
-                    // TODO: Search todo list here
+                    viewModel.textFieldSubmitted()
                 }
 
             if viewModel.isEditing {
                 Button(action: {
-                    viewModel.searchText = ""
-                    viewModel.isEditing = false
-                    UIApplication.shared.endEditing()
+                    viewModel.cancelButtonPressed()
                 }) {
                     Text("Cancel")
                 }
-                .padding(.trailing, 10)
                 .transition(.move(edge: .trailing))
                 .animation(.default, value: 5)
             }
         }
+        .frame(maxWidth: .infinity)
+        .frame(height: SIZE_HEIGHT_TEXTFIELD)
     }
     
     var todoItems: some View {
@@ -62,10 +70,58 @@ extension ToDoListView {
 
 extension ToDoListView {
     class ViewModel: ObservableObject {
-        @Published var searchText = ""
+        @Published var textFieldText = ""
         @Published var isEditing = false
         @Published var isLoading = false
         @Published var todoItems = [ToDoItemModel]()
+        @Published var textFieldConfig:TextFieldConfiguration = .search
+        @FocusState var focusedField: Bool?
         
+        var container: DependencyContainer
+        
+        init(container: DependencyContainer) {
+            self.container = container
+        }
+        
+        func textFieldSubmitted() {
+            if textFieldConfig == .add {
+                addToDoListItem()
+            } else {
+                searchToDoListItems()
+            }
+        }
+        
+        func cancelButtonPressed() {
+            textFieldConfig = .search
+            textFieldText = ""
+            isEditing = false
+            UIApplication.shared.endEditing()
+        }
+        
+        func imageButtonPressed() {
+            textFieldConfig.setOppositeValue()
+            textFieldText = ""
+        }
+        
+        private func addToDoListItem() {
+            
+        }
+        
+        private func searchToDoListItems() {
+            
+        }
+    }
+}
+
+enum TextFieldConfiguration: String {
+    case search = "Search ..."
+    case add = "Add item..."
+    
+    var oppisiteImage: String {
+        return self == .search ? "plus.square" : "magnifyingglass"
+    }
+    
+    mutating func setOppositeValue() {
+        self = self == .search ? .add : .search
     }
 }
