@@ -25,6 +25,7 @@ extension DependencyContainer {
         let container = DependencyContainer()
         container.components = [
             FirebaseAuthService(entity: container),
+            FirestoreService(entity: container),
             DataComponent(entity: container),
             TokenManager(entity: container),
             LocalStorageManager()
@@ -37,6 +38,7 @@ extension DependencyContainer {
 
 extension DependencyContainer {
     var firebaseAuthService: FirebaseAuthServiceProtocol { getComponent() }
+    var firestoreService: FirestoreServiceProtocol { getComponent() }
     var localStorageManager: LocalStorageManagerProtocol { getComponent() }
     var appState: Store<AppState> { dataComponent.appState }
     var dataComponent: DataComponentProtocol { getComponent() }
