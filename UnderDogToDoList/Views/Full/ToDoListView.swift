@@ -85,7 +85,7 @@ extension ToDoListView {
         ScrollView {
             LazyVStack() {
                 ForEach(viewModel.showFiltered ? viewModel.filterdToDoItems : viewModel.toDoItems) { item in
-                    ToDoItemView(configuration: .init(toDoItem: item))
+                    ToDoItemView(viewModel: .init(parentViewModel: viewModel, toDoItem: item))
                 }
             }
         }
@@ -140,17 +140,26 @@ extension ToDoListView {
             textFieldText = ""
         }
         
+        func toDoItemTextChanged(_ toDoItemId: String?, newText: String, completion: @escaping (Error?) -> Void) {
+            guard let toDoItemId = toDoItemId else {
+                // TODO: Error Handling Here
+                return
+            }
+            
+            container.firestoreService.updateToDoItem(uid: uid, documentID: toDoItemId, text: newText) {  error in
+                completion(error)
+            }
+        }
+        
         private func addToDoListItem() {
             isLoading = true
             var toDoItem = ToDoItemModel(text: textFieldText, completed: false)
-            container.firestoreService.writeToDoItems(uid: uid, toDoItem: toDoItem) { [weak self] (documentID, error) in
+            container.firestoreService.writeToDoItems(uid: uid, toDoItem: toDoItem) { [weak self] (error) in
                 if error != nil {
                     // TODO: Error handling here
-                } else if let documentID = documentID {
-                    toDoItem.id = documentID
-                    self?.toDoItems.append(toDoItem)
-                    self?.textFieldText = ""
                 }
+                self?.toDoItems.append(toDoItem)
+                self?.textFieldText = ""
                 self?.isLoading = false
             }
         }

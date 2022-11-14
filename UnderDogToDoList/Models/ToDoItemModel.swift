@@ -10,23 +10,31 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct ToDoItemModel: Identifiable, Codable {
-    @DocumentID var id: String?
-    let text: String
-    let completed: Bool
-    let timestamp = Timestamp(date: Date())
+    var id: String
+    var text: String
+    var completed: Bool
+    let timestamp: Timestamp
     
     var dateString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a 'on' MMMM dd, yyyy"
         return dateFormatter.string(from: timestamp.dateValue())
     }
-    
+        
     var dictionaryFormat: [String: Any] {
         [
             CodingKeys.text.rawValue: text,
             CodingKeys.completed.rawValue: completed,
             CodingKeys.timestamp.rawValue: timestamp,
+            CodingKeys.id.rawValue: id
         ]
+    }
+    
+    init(text: String, completed: Bool) {
+        self.text = text
+        self.completed = completed
+        self.timestamp =  Timestamp(date: Date())
+        self.id = UUID().uuidString
     }
     
     enum CodingKeys: String, CodingKey {

@@ -9,20 +9,29 @@ import Foundation
 import SwiftUI
 
 struct ToDoItemView: View {
-    let configuration: Configuration
+    @StateObject var viewModel: ViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: SIZE_PADDING_XS) {
-            Text(configuration.toDoItem.text)
-                .scaledFont(type: .quickSandBold, size: 17, color: TEXT_COLOR)
+            if viewModel.isEditing {
+                TextField(viewModel.toDoItem.text, text: $viewModel.textFieldText)
+                    .scaledFont(type: .quickSandBold, size: 17, color: TEXT_COLOR)
+                    .onSubmit {
+                        viewModel.isEditing = false
+                        viewModel.textFieldSubmitted()
+                    }
+            } else {
+                Text(viewModel.toDoItem.text)
+                    .scaledFont(type: .quickSandBold, size: 17, color: TEXT_COLOR)
+            }
             HStack {
-                Text(configuration.toDoItem.dateString)
+                Text(viewModel.toDoItem.dateString)
                     .scaledFont(type: .quickSandRegular, size: 13, color: TEXT_COLOR)
                 Spacer()
                 Button {
                     //configuration.favoriteButtoncompletion(configuration.business)
                 } label: {
-                    Image(systemName: configuration.toDoItem.completed ? "checkmark.circle.fill" : "checkmark.circle")
+                    Image(systemName: viewModel.toDoItem.completed ? "checkmark.circle.fill" : "checkmark.circle")
                         .foregroundColor(ACCENT_COLOR)
                 }
             }
@@ -31,15 +40,42 @@ struct ToDoItemView: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, MARGIN_SCREEN)
         .padding(.vertical, SIZE_PADDING_XXS)
+        .onTapGesture(count: 2) {
+            viewModel.isEditing = true
+        }
     }
 }
 
 extension ToDoItemView {
-    struct Configuration {
-        let toDoItem: ToDoItemModel
+    class ViewModel: ObservableObject {
+        @Published var toDoItem: ToDoItemModel
+        @Published var isEditing = false
+        @Published var textFieldText = ""
         
-        init(toDoItem: ToDoItemModel) {
+        unowned var parentViewModel: ToDoListView.ViewModel
+        
+        init(parentViewModel: ToDoListView.ViewModel, toDoItem: ToDoItemModel) {
             self.toDoItem = toDoItem
+            self.parentViewModel = parentViewModel
+        }
+        
+        func textFieldSubmitted() {
+            if !textFieldText.isEmpty && textFieldText != toDoItem.text {
+                parentViewModel.isLoading = true
+                parentViewModel.toDoItemTextChanged(toDoItem.id, newText: textFieldText) { [weak self] error in
+                    if error != nil {
+                        // TODO: Error handling here
+                    } else {
+                        guard let newText = self?.textFieldText else {
+                            // TODO: Error handling here
+                            return
+                        }
+                        self?.toDoItem.text = newText
+                        self?.textFieldText = ""
+                    }
+                    self?.parentViewModel.isLoading = false
+                }
+            }
         }
     }
 }

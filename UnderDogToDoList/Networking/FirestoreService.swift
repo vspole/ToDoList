@@ -11,7 +11,8 @@ import FirebaseFirestoreSwift
 
 protocol FirestoreServiceProtocol: AnyObject {
     func fetchToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void)
-    func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (String?, Error?) -> Void)
+    func fetchItem(uid: String, documentID: String, completion: @escaping (ToDoItemModel?, Error?) -> Void)
+    func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (Error?) -> Void)
     func updateToDoItem(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void)
 }
 
@@ -42,14 +43,20 @@ class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol 
         }
     }
     
-    func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (String?, Error?) -> Void) {
-        var ref: DocumentReference? = nil
-        ref = db?.collection(uid).addDocument(data: toDoItem.dictionaryFormat) { error in
-            if let error = error {
+    func fetchItem(uid: String, documentID: String, completion: @escaping (ToDoItemModel?, Error?) -> Void) {
+        db?.collection(uid).document(documentID).getDocument(as: ToDoItemModel.self) { result in
+            switch result {
+            case .success(let toDoItem):
+                completion(toDoItem, nil)
+            case .failure(let error):
                 completion(nil, error)
-            } else {
-                completion(ref?.documentID, error)
             }
+        }
+    }
+    
+    func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (Error?) -> Void) {
+        db?.collection(uid).document(toDoItem.id).setData(toDoItem.dictionaryFormat) { error in
+            completion(error)
         }
     }
     
