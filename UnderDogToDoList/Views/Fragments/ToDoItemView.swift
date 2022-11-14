@@ -14,12 +14,13 @@ struct ToDoItemView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: SIZE_PADDING_XS) {
             if viewModel.isEditing {
-                TextField(viewModel.toDoItem.text, text: $viewModel.textFieldText)
-                    .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
-                    .onSubmit {
+                TextField(viewModel.toDoItem.text, text: $viewModel.textFieldText, onEditingChanged: { editingChanged in
+                    if !editingChanged {
                         viewModel.isEditing = false
                         viewModel.textFieldSubmitted()
                     }
+                })
+                    .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
             } else {
                 Text(viewModel.toDoItem.text)
                     .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
@@ -40,7 +41,7 @@ struct ToDoItemView: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, MARGIN_SCREEN)
         .padding(.vertical, SIZE_PADDING_XXS)
-        .onTapGesture(count: 2) {
+        .onTapGesture() {
             viewModel.isEditing = true
         }
     }
@@ -61,6 +62,11 @@ extension ToDoItemView {
         init(parentViewModel: ToDoListView.ViewModel, toDoItem: ToDoItemModel) {
             self.toDoItem = toDoItem
             self.parentViewModel = parentViewModel
+        }
+        
+        func resetTextField() {
+            textFieldText = ""
+            isEditing = false
         }
         
         func textFieldSubmitted() {
