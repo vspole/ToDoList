@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 protocol FirestoreServiceProtocol: AnyObject {
-    func getToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void)
+    func fetchToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void)
     func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (String?, Error?) -> Void)
     func updateToDoItem(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void)
 }
@@ -18,7 +18,7 @@ protocol FirestoreServiceProtocol: AnyObject {
 class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol {
     private var db: Firestore?
     
-    func getToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void) {
+    func fetchToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void) {
         db?.collection(uid).getDocuments() { (querySnapshot, error) in
             if let error = error {
                 // TODO: Error Handling Here
