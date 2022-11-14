@@ -15,6 +15,12 @@ struct ToDoItemModel: Identifiable, Codable {
     let completed: Bool
     let timestamp = Timestamp(date: Date())
     
+    var dateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a 'on' MMMM dd, yyyy"
+        return dateFormatter.string(from: timestamp.dateValue())
+    }
+    
     var dictionaryFormat: [String: Any] {
         [
             CodingKeys.text.rawValue: text,

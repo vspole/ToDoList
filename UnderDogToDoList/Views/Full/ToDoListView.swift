@@ -13,6 +13,8 @@ struct ToDoListView: View {
     var body: some View {
         VStack {
             tabBar
+                .padding(.all, MARGIN_SCREEN)
+            todoItems
             Spacer()
         }
         .overlay {
@@ -21,7 +23,6 @@ struct ToDoListView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: ACCENT_COLOR))
             }
         }
-        .padding(.all, MARGIN_SCREEN)
         .onAppear {
             viewModel.viewDidAppear(self)
         }
@@ -57,7 +58,7 @@ extension ToDoListView {
         TextField(viewModel.textFieldConfig.rawValue, text: $viewModel.textFieldText)
             .padding(SIZE_PADDING_SMALL)
             .background(Color(.systemGray6))
-            .cornerRadius(CORNER_RADIUS_TEXT_FIELD)
+            .cornerRadius(CORNER_RADIUS)
             .onTapGesture {
                 viewModel.isEditing = true
             }
@@ -84,7 +85,7 @@ extension ToDoListView {
         ScrollView {
             LazyVStack() {
                 ForEach(viewModel.showFiltered ? viewModel.filterdToDoItems : viewModel.toDoItems) { item in
-                    // TODO: List Item View here
+                    ToDoItemView(configuration: .init(toDoItem: item))
                 }
             }
         }
