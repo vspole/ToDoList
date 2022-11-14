@@ -13,7 +13,8 @@ protocol FirestoreServiceProtocol: AnyObject {
     func fetchToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void)
     func fetchItem(uid: String, documentID: String, completion: @escaping (ToDoItemModel?, Error?) -> Void)
     func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (Error?) -> Void)
-    func updateToDoItem(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void)
+    func updateToDoItemText(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void)
+    func updateToDoItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void)
 }
 
 class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol {
@@ -60,8 +61,14 @@ class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol 
         }
     }
     
-    func updateToDoItem(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void) {
+    func updateToDoItemText(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void) {
         db?.collection(uid).document(documentID).updateData([ToDoItemModel.CodingKeys.text.rawValue: text]) { error in
+            completion(error)
+        }
+    }
+    
+    func updateToDoItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void) {
+        db?.collection(uid).document(documentID).updateData([ToDoItemModel.CodingKeys.completed.rawValue: completed]) { error in
             completion(error)
         }
     }

@@ -9,3 +9,4 @@ import SwiftUI
 
 let ACCENT_COLOR = Color("AccentColor")
 let TEXT_COLOR = Color("TextColor")
+let COMPLETED_TEXT_COLOR = Color.red

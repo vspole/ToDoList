@@ -15,21 +15,21 @@ struct ToDoItemView: View {
         VStack(alignment: .leading, spacing: SIZE_PADDING_XS) {
             if viewModel.isEditing {
                 TextField(viewModel.toDoItem.text, text: $viewModel.textFieldText)
-                    .scaledFont(type: .quickSandBold, size: 17, color: TEXT_COLOR)
+                    .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
                     .onSubmit {
                         viewModel.isEditing = false
                         viewModel.textFieldSubmitted()
                     }
             } else {
                 Text(viewModel.toDoItem.text)
-                    .scaledFont(type: .quickSandBold, size: 17, color: TEXT_COLOR)
+                    .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
             }
             HStack {
                 Text(viewModel.toDoItem.dateString)
                     .scaledFont(type: .quickSandRegular, size: 13, color: TEXT_COLOR)
                 Spacer()
                 Button {
-                    //configuration.favoriteButtoncompletion(configuration.business)
+                    viewModel.completedButtonPressed()
                 } label: {
                     Image(systemName: viewModel.toDoItem.completed ? "checkmark.circle.fill" : "checkmark.circle")
                         .foregroundColor(ACCENT_COLOR)
@@ -51,6 +51,10 @@ extension ToDoItemView {
         @Published var toDoItem: ToDoItemModel
         @Published var isEditing = false
         @Published var textFieldText = ""
+        
+        var textColor: Color {
+            toDoItem.completed ? COMPLETED_TEXT_COLOR : TEXT_COLOR
+        }
         
         unowned var parentViewModel: ToDoListView.ViewModel
         
@@ -75,6 +79,19 @@ extension ToDoItemView {
                     }
                     self?.parentViewModel.isLoading = false
                 }
+            }
+        }
+        
+        func completedButtonPressed() {
+            parentViewModel.isLoading = true
+            let newCompleted = !toDoItem.completed
+            parentViewModel.toDoItemCompletedChanged(toDoItem.id, completed: newCompleted) { [weak self] error in
+                if error != nil {
+                    // TODO: Error handling here
+                } else {
+                    self?.toDoItem.completed = newCompleted
+                }
+                self?.parentViewModel.isLoading = false
             }
         }
     }

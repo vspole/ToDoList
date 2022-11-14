@@ -146,7 +146,18 @@ extension ToDoListView {
                 return
             }
             
-            container.firestoreService.updateToDoItem(uid: uid, documentID: toDoItemId, text: newText) {  error in
+            container.firestoreService.updateToDoItemText(uid: uid, documentID: toDoItemId, text: newText) {  error in
+                completion(error)
+            }
+        }
+        
+        func toDoItemCompletedChanged(_ toDoItemId: String?, completed: Bool, completion: @escaping (Error?) -> Void) {
+            guard let toDoItemId = toDoItemId else {
+                // TODO: Error Handling Here
+                return
+            }
+            
+            container.firestoreService.updateToDoItemStatus(uid: uid, documentID: toDoItemId, completed: completed) {  error in
                 completion(error)
             }
         }
