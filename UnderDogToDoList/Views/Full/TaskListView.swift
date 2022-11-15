@@ -141,7 +141,7 @@ extension TaskListView {
         
         func taskItemTextChanged(_ taskItemId: String?, newText: String, completion: @escaping (Error?) -> Void) {
             guard let taskItemId = taskItemId else {
-                // TODO: Error Handling Here
+                container.alertService.presentGenericError()
                 return
             }
             
@@ -152,7 +152,7 @@ extension TaskListView {
         
         func taskItemCompletedChanged(_ taskItemId: String?, completed: Bool, completion: @escaping (Error?) -> Void) {
             guard let taskItemId = taskItemId else {
-                // TODO: Error Handling Here
+                self?.parentViewModel.container.alertService.presentGenericError()
                 return
             }
             
@@ -165,13 +165,13 @@ extension TaskListView {
             isLoading = true
             
             guard let taskItemId = taskItemId, let index = taskItems.lazy.firstIndex(where: { $0.id == taskItemId }) else {
-                // TODO: Error Handling Here
+                container.alertService.presentGenericError()
                 return
             }
             
             container.firestoreService.deleteTaskItem(uid: uid, documentID: taskItemId) { [weak self] error in
                 if error != nil {
-                    // TODO: Error Handling Here
+                    self?.container.alertService.presentGenericError()
                 } else {
                     self?.taskItems.remove(at: index)
                 }
@@ -181,7 +181,7 @@ extension TaskListView {
         
         private func addTaskItem() {
             guard !textFieldText.isEmpty else {
-                // TODO: Error Handling Here
+                container.alertService.presentGenericError()
                 return
             }
             
@@ -189,7 +189,7 @@ extension TaskListView {
             let newTaskItem = TaskItemModel(text: textFieldText, completed: false)
             container.firestoreService.writeTaskItem(uid: uid, taskItem: newTaskItem) { [weak self] (error) in
                 if error != nil {
-                    // TODO: Error handling here
+                    self?.container.alertService.presentGenericError()
                 }
                 self?.taskItems.insert(newTaskItem, at: 0)
                 self?.textFieldText = ""
@@ -201,7 +201,7 @@ extension TaskListView {
             isLoading = true
             container.firestoreService.fetchTaskItems(uid: uid) { [weak self] (items, error) in
                 if error != nil {
-                    // TODO: Error handling here
+                    self?.container.alertService.presentGenericError()
                 } else if let items = items {
                     self?.taskItems = items.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
                 }

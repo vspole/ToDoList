@@ -80,10 +80,10 @@ extension TaskItemView {
                 parentViewModel.isLoading = true
                 parentViewModel.taskItemTextChanged(taskItem.id, newText: textFieldText) { [weak self] error in
                     if error != nil {
-                        // TODO: Error handling here
+                        self?.parentViewModel.container.alertService.presentGenericError()
                     } else {
                         guard let newText = self?.textFieldText else {
-                            // TODO: Error handling here
+                            self?.parentViewModel.container.alertService.presentGenericError()
                             return
                         }
                         self?.taskItem.text = newText
@@ -99,7 +99,7 @@ extension TaskItemView {
             let newCompleted = !taskItem.completed
             parentViewModel.taskItemCompletedChanged(taskItem.id, completed: newCompleted) { [weak self] error in
                 if error != nil {
-                    // TODO: Error handling here
+                    self?.parentViewModel.container.alertService.presentGenericError()
                 } else {
                     self?.taskItem.completed = newCompleted
                 }

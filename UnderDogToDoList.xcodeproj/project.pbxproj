@@ -80,6 +80,7 @@
 		6920CC89291DBE380037E462 /* TaskItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC88291DBE380037E462 /* TaskItemModel.swift */; };
 		6920CC8B2921915A0037E462 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8A2921915A0037E462 /* FirestoreService.swift */; };
 		6920CC8F2921CF480037E462 /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8E2921CF480037E462 /* TaskItemView.swift */; };
+		69C9D05429235B1B00953E0E /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05329235B1B00953E0E /* AlertService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		6920CC88291DBE380037E462 /* TaskItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemModel.swift; sourceTree = "<group>"; };
 		6920CC8A2921915A0037E462 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		6920CC8E2921CF480037E462 /* TaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
+		69C9D05329235B1B00953E0E /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +289,7 @@
 				6920CBFA291D67790037E462 /* LocalStorageManager.swift */,
 				6920CC37291D69BA0037E462 /* TokenManager.swift */,
 				6920CC39291D69FE0037E462 /* ComponentProtocol.swift */,
+				69C9D05329235B1B00953E0E /* AlertService.swift */,
 			);
 			path = "Dependency Container";
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				6920CBFB291D67790037E462 /* LocalStorageManager.swift in Sources */,
 				6920CC3A291D69FE0037E462 /* ComponentProtocol.swift in Sources */,
 				6920CBC4291D63690037E462 /* ContentView.swift in Sources */,
+				69C9D05429235B1B00953E0E /* AlertService.swift in Sources */,
 				6920CBF1291D65D70037E462 /* StartUpProtocol.swift in Sources */,
 				6920CC8B2921915A0037E462 /* FirestoreService.swift in Sources */,
 				6920CBF5291D665A0037E462 /* AppState.swift in Sources */,

@@ -11,6 +11,7 @@ import FirebaseAuth
 /// Redux-like centralized AppState as the single source of truth
 struct AppState: Equatable {
     var isLoggedIn: Bool { !userData.token.isEmpty }
+    var showAlert = false
     var userData = UserData()
 }
 

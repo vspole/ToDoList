@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import Combine
 
 struct MainView: View {
     @StateObject var viewModel: ViewModel
@@ -22,17 +23,34 @@ struct MainView: View {
         .onAppear {
             viewModel.viewDidAppear(self)
         }
+        .alert(isPresented: $viewModel.showAlert) {
+            viewModel.container.alertService.currentAlert
+        }
     }
 }
 
 extension MainView {
     class ViewModel: ObservableObject {
         @Published var isUserLoggedIn = false
+        @Published var showAlert = false {
+            didSet {
+                if !showAlert {
+                    container.alertService.dismiss()
+                }
+            }
+        }
         
+        private var cancellables = Set<AnyCancellable>()
         var container: DependencyContainer
         
         init(container: DependencyContainer) {
             self.container = container
+            
+            container.appState.publisher(for: \.showAlert)
+                .sink { [weak self] showAlert in
+                    self?.showAlert = showAlert
+                }
+                .store(in: &cancellables)
         }
         
         func viewDidAppear(_ view: MainView) {

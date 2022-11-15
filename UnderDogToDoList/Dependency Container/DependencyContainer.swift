@@ -28,6 +28,7 @@ extension DependencyContainer {
             FirestoreService(entity: container),
             DataComponent(entity: container),
             TokenManager(entity: container),
+            AlertService(entity: container),
             LocalStorageManager()
         ]
         return container
@@ -43,4 +44,5 @@ extension DependencyContainer {
     var appState: Store<AppState> { dataComponent.appState }
     var dataComponent: DataComponentProtocol { getComponent() }
     var tokenManager: TokenManagerProtocol { getComponent() }
+    var alertService: AlertServiceProtocol { getComponent() }
 }

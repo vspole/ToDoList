@@ -185,7 +185,7 @@ extension PhoneLoginView {
                 
                 if let error = error {
                     print("Error: ", error.localizedDescription)
-                    // TODO: Alert View Error
+                    self?.container.alertService.presentGenericError()
                     return
                 }
                 
@@ -202,7 +202,7 @@ extension PhoneLoginView {
                 
                 if let error = error {
                     print("Error: ", error.localizedDescription)
-                    // TODO: Alert View Error
+                    self?.container.alertService.presentGenericError()
                     return
                 }
                 self?.getToken()
@@ -212,7 +212,7 @@ extension PhoneLoginView {
         private func getToken() {
             container.firebaseAuthService.getUserIDToken { [weak self] userToken in
                 guard let token = userToken else {
-                    // TODO: Error Handeling
+                    self?.container.alertService.presentGenericError()
                     return
                 }
                 self?.container.appState[\.userData.token] = token
