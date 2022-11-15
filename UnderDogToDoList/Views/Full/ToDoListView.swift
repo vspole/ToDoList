@@ -162,9 +162,27 @@ extension ToDoListView {
             }
         }
         
+        func toDoItemDelete(_ toDoItemId: String?) {
+            isLoading = true
+            
+            guard let toDoItemId = toDoItemId, let index = toDoItems.lazy.firstIndex(where: { $0.id == toDoItemId }) else {
+                // TODO: Error Handling Here
+                return
+            }
+            
+            container.firestoreService.deleteToDoItem(uid: uid, documentID: toDoItemId) { [weak self] error in
+                if error != nil {
+                    // TODO: Error Handling Here
+                } else {
+                    self?.toDoItems.remove(at: index)
+                }
+                self?.isLoading = false
+            }
+        }
+        
         private func addToDoListItem() {
             isLoading = true
-            var toDoItem = ToDoItemModel(text: textFieldText, completed: false)
+            let toDoItem = ToDoItemModel(text: textFieldText, completed: false)
             container.firestoreService.writeToDoItems(uid: uid, toDoItem: toDoItem) { [weak self] (error) in
                 if error != nil {
                     // TODO: Error handling here

@@ -35,6 +35,12 @@ struct ToDoItemView: View {
                     Image(systemName: viewModel.toDoItem.completed ? "checkmark.circle.fill" : "checkmark.circle")
                         .foregroundColor(ACCENT_COLOR)
                 }
+                Button {
+                    viewModel.deleteButtonPressed()
+                } label: {
+                    Image(systemName: "trash.circle.fill")
+                        .foregroundColor(ACCENT_COLOR)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -99,6 +105,10 @@ extension ToDoItemView {
                 }
                 self?.parentViewModel.isLoading = false
             }
+        }
+        
+        func deleteButtonPressed() {
+            parentViewModel.toDoItemDelete(toDoItem.id)
         }
     }
 }

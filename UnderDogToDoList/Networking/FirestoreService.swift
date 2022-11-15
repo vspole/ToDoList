@@ -15,6 +15,7 @@ protocol FirestoreServiceProtocol: AnyObject {
     func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (Error?) -> Void)
     func updateToDoItemText(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void)
     func updateToDoItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void)
+    func deleteToDoItem(uid: String, documentID: String, completion: @escaping (Error?) -> Void)
 }
 
 class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol {
@@ -69,6 +70,12 @@ class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol 
     
     func updateToDoItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void) {
         db?.collection(uid).document(documentID).updateData([ToDoItemModel.CodingKeys.completed.rawValue: completed]) { error in
+            completion(error)
+        }
+    }
+    
+    func deleteToDoItem(uid: String, documentID: String, completion: @escaping (Error?) -> Void) {
+        db?.collection(uid).document(documentID).delete() { error in
             completion(error)
         }
     }
