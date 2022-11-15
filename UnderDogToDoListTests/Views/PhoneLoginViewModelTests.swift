@@ -10,15 +10,21 @@ import XCTest
 
 class PhoneLoginViewModelTests: XCTestCase {
     var container: DependencyContainer!
+    var dataComponent: DataComponent!
+    var alertService: AlertService!
     var firebaseAuthService: MockFirebaseAuthService!
     var phoneViewModel: PhoneLoginView.ViewModel!
     var mainViewModel: MainView.ViewModel!
     
     override func setUpWithError() throws {
         container = DependencyContainer()
-        firebaseAuthService = MockFirebaseAuthService(entity: container)
+        firebaseAuthService = MockFirebaseAuthService(container: container)
+        dataComponent = DataComponent(container: container)
+        alertService = AlertService(container: container)
         container.components = [
-            firebaseAuthService
+            firebaseAuthService,
+            dataComponent,
+            alertService
         ]
         mainViewModel = .init(container: container)
         phoneViewModel = .init(container: container, mainViewModel: mainViewModel)

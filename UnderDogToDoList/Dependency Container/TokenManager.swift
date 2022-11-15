@@ -15,20 +15,13 @@ public protocol TokenManagerProtocol {
 
 public let accessTokenKey = "user.access.token"
 
-public class TokenManager<Entity: EntityProtocol>: TokenManagerProtocol, ComponentProtocol {
-    public unowned var entity: Entity
-    private var localStorageManager: LocalStorageManagerProtocol { getEntityComponent() }
-    
-    public init(entity: Entity) {
-        self.entity = entity
-    }
-    
+class TokenManager: DependencyContainer.Component, TokenManagerProtocol {
     
     public func storeToken(token: String) {
-        localStorageManager.securelyStore(key: accessTokenKey, data: token)
+        container.localStorageManager.securelyStore(key: accessTokenKey, data: token)
     }
 
     public func retrieveToken() -> String {
-        localStorageManager.securelyRetrieveData(key: accessTokenKey) ?? ""
+        container.localStorageManager.securelyRetrieveData(key: accessTokenKey) ?? ""
     }
 }

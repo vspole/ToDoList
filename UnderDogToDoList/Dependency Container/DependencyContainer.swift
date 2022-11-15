@@ -14,21 +14,21 @@ class DependencyContainer: ObservableObject, EntityProtocol {
 
 extension DependencyContainer {
     class Component {
-        unowned var entity: DependencyContainer
+        unowned var container: DependencyContainer
 
-        init(entity: DependencyContainer) {
-            self.entity = entity
+        init(container: DependencyContainer) {
+            self.container = container
         }
     }
 
     static func create() -> DependencyContainer {
         let container = DependencyContainer()
         container.components = [
-            FirebaseAuthService(entity: container),
-            FirestoreService(entity: container),
-            DataComponent(entity: container),
-            TokenManager(entity: container),
-            AlertService(entity: container),
+            FirebaseAuthService(container: container),
+            FirestoreService(container: container),
+            DataComponent(container: container),
+            TokenManager(container: container),
+            AlertService(container: container),
             LocalStorageManager()
         ]
         return container

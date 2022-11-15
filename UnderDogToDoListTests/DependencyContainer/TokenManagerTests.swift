@@ -9,38 +9,42 @@
 import XCTest
 
 class TokenManagerTests: XCTestCase {
-    var entity: MockEntity!
-    var sut: TokenManager<MockEntity>!
+    var container: DependencyContainer!
+    var sut: TokenManager!
     var storageManager: MockLocalStorageManager!
+    var dataComponent: DataComponent!
 
     override func setUpWithError() throws {
-        entity = MockEntity()
-        sut = TokenManager(entity: entity)
+        container = DependencyContainer()
+        sut = TokenManager(container: container)
+        dataComponent = DataComponent(container: container)
         storageManager = MockLocalStorageManager()
-        entity.components = [
+        container.components = [
             sut,
-            storageManager
+            storageManager,
+            dataComponent
         ]
     }
 
     override func tearDownWithError() throws {
-        entity = nil
+        container = nil
         sut = nil
         storageManager = nil
+        dataComponent = nil
     }
-    
+
     func test_storeToken_usesStorageManager() {
         // Act
         sut.storeToken(token: "abc123")
-        
+
         // Assert
         XCTAssertEqual(storageManager.securelyStoreCallCount, 1)
     }
-    
+
     func test_retrieveToken_usesStorageManager() {
         // Act
         _ = sut.retrieveToken()
-        
+
         // Assert
         XCTAssertEqual(storageManager.securelyRetrieveDataCallCount, 1)
     }

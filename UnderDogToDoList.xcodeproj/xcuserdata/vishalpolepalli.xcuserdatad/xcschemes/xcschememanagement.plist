@@ -23,12 +23,30 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 		<key>UnderDogToDoList.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>6920CBBD291D63690037E462</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6920CBCD291D636A0037E462</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6920CBD7291D636A0037E462</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -61,6 +61,6 @@ class FirebaseAuthService: DependencyContainer.Component, FirebaseAuthServicePro
             print("Error: ", error)
         }
         // Reset the App State on sign out
-        entity.dataComponent.appState.value = .init()
+        container.dataComponent.appState.value = .init()
     }
 }

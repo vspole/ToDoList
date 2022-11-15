@@ -15,7 +15,7 @@ class FirebaseAuthServiceTests: XCTestCase {
     
     override func setUpWithError() throws {
         dependencyContainer = DependencyContainer()
-        firebaseAuthService = MockFirebaseAuthService(entity: dependencyContainer)
+        firebaseAuthService = MockFirebaseAuthService(container: dependencyContainer)
         dependencyContainer.components = [
             firebaseAuthService,
         ]

@@ -27,12 +27,12 @@ class AlertService: DependencyContainer.Component, AlertServiceProtocol {
     
     func present(_ value: AlertType) {
         alertType = value
-        entity.appState.value.showAlert = true
+        container.appState.value.showAlert = true
     }
     
     func presentGenericError() {
         alertType = .genericError(genericDismissAction)
-        entity.appState.value.showAlert = true
+        container.appState.value.showAlert = true
     }
     
     func dismiss() {
@@ -40,7 +40,7 @@ class AlertService: DependencyContainer.Component, AlertServiceProtocol {
     }
     
     func genericDismissAction() {
-        entity.appState.value.showAlert = false
+        container.appState.value.showAlert = false
     }
 }
 

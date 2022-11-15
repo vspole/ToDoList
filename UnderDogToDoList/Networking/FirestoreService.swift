@@ -22,7 +22,7 @@ class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol 
     private var db: Firestore?
     
     func fetchTaskItems(uid: String, completion: @escaping ([TaskItemModel]?, Error?) -> Void) {
-        db?.collection(uid).getDocuments() { [weak self] (querySnapshot, error) in
+        db?.collection(uid).getDocuments() { (querySnapshot, error) in
             if let error = error {
                 completion(nil, error)
             } else {

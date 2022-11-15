@@ -55,7 +55,7 @@
 		6920CC43291D71300037E462 /* MockTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC42291D71300037E462 /* MockTokenManager.swift */; };
 		6920CC45291D716F0037E462 /* MockLocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC44291D716F0037E462 /* MockLocalStorageManager.swift */; };
 		6920CC47291D718C0037E462 /* TokenManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC46291D718C0037E462 /* TokenManagerTests.swift */; };
-		6920CC49291D71AC0037E462 /* MockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC48291D71AC0037E462 /* MockEntity.swift */; };
+		6920CC49291D71AC0037E462 /* MockContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC48291D71AC0037E462 /* MockContainer.swift */; };
 		6920CC4B291D71D40037E462 /* LocalStorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC4A291D71D40037E462 /* LocalStorageManagerTests.swift */; };
 		6920CC4D291D727E0037E462 /* MockFirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC4C291D727E0037E462 /* MockFirebaseAuthService.swift */; };
 		6920CC50291D74A80037E462 /* FirebaseAuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC4F291D74A80037E462 /* FirebaseAuthServiceTests.swift */; };
@@ -81,6 +81,7 @@
 		6920CC8B2921915A0037E462 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8A2921915A0037E462 /* FirestoreService.swift */; };
 		6920CC8F2921CF480037E462 /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8E2921CF480037E462 /* TaskItemView.swift */; };
 		69C9D05429235B1B00953E0E /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05329235B1B00953E0E /* AlertService.swift */; };
+		69C9D0562923682400953E0E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 69C9D0552923682400953E0E /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +125,7 @@
 		6920CC42291D71300037E462 /* MockTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenManager.swift; sourceTree = "<group>"; };
 		6920CC44291D716F0037E462 /* MockLocalStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocalStorageManager.swift; sourceTree = "<group>"; };
 		6920CC46291D718C0037E462 /* TokenManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManagerTests.swift; sourceTree = "<group>"; };
-		6920CC48291D71AC0037E462 /* MockEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEntity.swift; sourceTree = "<group>"; };
+		6920CC48291D71AC0037E462 /* MockContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContainer.swift; sourceTree = "<group>"; };
 		6920CC4A291D71D40037E462 /* LocalStorageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManagerTests.swift; sourceTree = "<group>"; };
 		6920CC4C291D727E0037E462 /* MockFirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirebaseAuthService.swift; sourceTree = "<group>"; };
 		6920CC4F291D74A80037E462 /* FirebaseAuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthServiceTests.swift; sourceTree = "<group>"; };
@@ -194,6 +195,7 @@
 			files = (
 				6920CC82291D9FB40037E462 /* FirebaseMessaging in Frameworks */,
 				6920CC3D291D6FAE0037E462 /* FirebaseAuth in Frameworks */,
+				69C9D0562923682400953E0E /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +327,7 @@
 			children = (
 				6920CC42291D71300037E462 /* MockTokenManager.swift */,
 				6920CC44291D716F0037E462 /* MockLocalStorageManager.swift */,
-				6920CC48291D71AC0037E462 /* MockEntity.swift */,
+				6920CC48291D71AC0037E462 /* MockContainer.swift */,
 				6920CC4C291D727E0037E462 /* MockFirebaseAuthService.swift */,
 			);
 			path = Mocks;
@@ -497,6 +499,7 @@
 			packageProductDependencies = (
 				6920CC3C291D6FAE0037E462 /* FirebaseAuth */,
 				6920CC81291D9FB40037E462 /* FirebaseMessaging */,
+				69C9D0552923682400953E0E /* FirebaseFirestore */,
 			);
 			productName = UnderDogToDoListTests;
 			productReference = 6920CBCE291D636A0037E462 /* UnderDogToDoListTests.xctest */;
@@ -640,7 +643,7 @@
 				6920CC40291D70570037E462 /* DependencyContainerTests.swift in Sources */,
 				6920CC50291D74A80037E462 /* FirebaseAuthServiceTests.swift in Sources */,
 				6920CC4B291D71D40037E462 /* LocalStorageManagerTests.swift in Sources */,
-				6920CC49291D71AC0037E462 /* MockEntity.swift in Sources */,
+				6920CC49291D71AC0037E462 /* MockContainer.swift in Sources */,
 				6920CC45291D716F0037E462 /* MockLocalStorageManager.swift in Sources */,
 				6920CC4D291D727E0037E462 /* MockFirebaseAuthService.swift in Sources */,
 				6920CC80291D9F340037E462 /* PhoneLoginViewModelTests.swift in Sources */,
@@ -1122,6 +1125,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6920CC00291D69280037E462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		69C9D0552923682400953E0E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6920CC00291D69280037E462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

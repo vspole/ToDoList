@@ -28,21 +28,21 @@ extension DataComponent: StartUpProtocol {
     
     func startUp() {
         // On-load, retrieve any stored token from the token manager
-        appState[\.userData.token] = entity.tokenManager.retrieveToken()
-        appState[\.userData.user] = entity.firebaseAuthService.getCurrentUser()
+        appState[\.userData.token] = container.tokenManager.retrieveToken()
+        appState[\.userData.user] = container.firebaseAuthService.getCurrentUser()
         
         // When updating the token, auto-store in the token manager
         appState.publisher(for: \.userData.token)
             .sink { [weak self] token in
-                self?.entity.tokenManager.storeToken(token: token)
+                self?.container.tokenManager.storeToken(token: token)
             }
             .store(in: &cancellables)
         
         // Refresh User ID Token if logged in
         if appState.value.isLoggedIn {
-            entity.firebaseAuthService.getUserIDToken { [weak self] userToken in
+            container.firebaseAuthService.getUserIDToken { [weak self] userToken in
                 guard let token = userToken else {
-                    self?.entity.alertService.presentGenericError()
+                    self?.container.alertService.presentGenericError()
                     return
                 }
                 self?.appState[\.userData.token] = token

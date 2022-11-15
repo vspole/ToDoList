@@ -7,7 +7,7 @@
 
 @testable import UnderDogToDoList
 
-public class MockEntity: EntityProtocol {
+public class MockContainer: EntityProtocol {
     public var components: [AnyObject] = []
     
     public init() {
