@@ -20,6 +20,10 @@ struct ToDoItemModel: Identifiable, Codable {
         dateFormatter.dateFormat = "h:mm a 'on' MMMM dd, yyyy"
         return dateFormatter.string(from: timestamp.dateValue())
     }
+    
+    var date: Date {
+        timestamp.dateValue()
+    }
         
     var dictionaryFormat: [String: Any] {
         [

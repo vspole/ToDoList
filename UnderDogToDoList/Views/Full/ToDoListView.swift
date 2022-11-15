@@ -123,7 +123,6 @@ extension ToDoListView {
                 addToDoListItem()
             } else {
                 searchToDoListItems()
-                showFiltered = true
             }
         }
         
@@ -181,13 +180,18 @@ extension ToDoListView {
         }
         
         private func addToDoListItem() {
+            guard !textFieldText.isEmpty else {
+                // TODO: Error Handling Here
+                return
+            }
+            
             isLoading = true
             let toDoItem = ToDoItemModel(text: textFieldText, completed: false)
             container.firestoreService.writeToDoItems(uid: uid, toDoItem: toDoItem) { [weak self] (error) in
                 if error != nil {
                     // TODO: Error handling here
                 }
-                self?.toDoItems.append(toDoItem)
+                self?.toDoItems.insert(toDoItem, at: 0)
                 self?.textFieldText = ""
                 self?.isLoading = false
             }
@@ -199,15 +203,20 @@ extension ToDoListView {
                 if error != nil {
                     // TODO: Error handling here
                 } else if let items = items {
-                    self?.toDoItems = items
+                    self?.toDoItems = items.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
                 }
                 self?.isLoading = false
             }
         }
         
         private func searchToDoListItems() {
+            guard !textFieldText.isEmpty else {
+                showFiltered = false
+                return
+            }
+            
             filterdToDoItems = toDoItems.filter { $0.text.lowercased().contains(textFieldText.lowercased())}
-            print(filterdToDoItems)
+            showFiltered = true
         }
     }
 }
