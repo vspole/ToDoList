@@ -82,6 +82,7 @@
 		6920CC8F2921CF480037E462 /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8E2921CF480037E462 /* TaskItemView.swift */; };
 		69C9D05429235B1B00953E0E /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05329235B1B00953E0E /* AlertService.swift */; };
 		69C9D0562923682400953E0E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 69C9D0552923682400953E0E /* FirebaseFirestore */; };
+		69C9D05829244C0900953E0E /* TestDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05729244C0900953E0E /* TestDependencyContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		6920CC8A2921915A0037E462 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		6920CC8E2921CF480037E462 /* TaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
 		69C9D05329235B1B00953E0E /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		69C9D05729244C0900953E0E /* TestDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependencyContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +320,7 @@
 				6920CC3F291D70570037E462 /* DependencyContainerTests.swift */,
 				6920CC46291D718C0037E462 /* TokenManagerTests.swift */,
 				6920CC4A291D71D40037E462 /* LocalStorageManagerTests.swift */,
+				69C9D05729244C0900953E0E /* TestDependencyContainer.swift */,
 			);
 			path = DependencyContainer;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				6920CC45291D716F0037E462 /* MockLocalStorageManager.swift in Sources */,
 				6920CC4D291D727E0037E462 /* MockFirebaseAuthService.swift in Sources */,
 				6920CC80291D9F340037E462 /* PhoneLoginViewModelTests.swift in Sources */,
+				69C9D05829244C0900953E0E /* TestDependencyContainer.swift in Sources */,
 				6920CC43291D71300037E462 /* MockTokenManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

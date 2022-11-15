@@ -8,44 +8,31 @@
 @testable import UnderDogToDoList
 import XCTest
 
-class TokenManagerTests: XCTestCase {
-    var container: DependencyContainer!
-    var sut: TokenManager!
-    var storageManager: MockLocalStorageManager!
-    var dataComponent: DataComponent!
-
+class TokenManagerTests: TestDependencyContainer {
+    var tokenManager: TokenManager!
+    
     override func setUpWithError() throws {
-        container = DependencyContainer()
-        sut = TokenManager(container: container)
-        dataComponent = DataComponent(container: container)
-        storageManager = MockLocalStorageManager()
-        container.components = [
-            sut,
-            storageManager,
-            dataComponent
-        ]
+        container = DependencyContainer().createTestDependencyContainer()
+        tokenManager = TokenManager(container: container)
     }
 
     override func tearDownWithError() throws {
-        container = nil
-        sut = nil
-        storageManager = nil
-        dataComponent = nil
+        tokenManager = nil
     }
 
     func test_storeToken_usesStorageManager() {
         // Act
-        sut.storeToken(token: "abc123")
+        tokenManager.storeToken(token: "abc123")
 
         // Assert
-        XCTAssertEqual(storageManager.securelyStoreCallCount, 1)
+        XCTAssertEqual(container.mockLocalStorageManager.securelyStoreCallCount, 1)
     }
 
     func test_retrieveToken_usesStorageManager() {
         // Act
-        _ = sut.retrieveToken()
+        _ = tokenManager.retrieveToken()
 
         // Assert
-        XCTAssertEqual(storageManager.securelyRetrieveDataCallCount, 1)
+        XCTAssertEqual(container.mockLocalStorageManager.securelyRetrieveDataCallCount, 1)
     }
 }

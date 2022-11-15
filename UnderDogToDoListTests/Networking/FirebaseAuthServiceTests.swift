@@ -9,68 +9,53 @@
 import XCTest
 import FirebaseAuth
 
-class FirebaseAuthServiceTests: XCTestCase {
-    var dependencyContainer: DependencyContainer!
-    var firebaseAuthService: MockFirebaseAuthService!
-    
-    override func setUpWithError() throws {
-        dependencyContainer = DependencyContainer()
-        firebaseAuthService = MockFirebaseAuthService(container: dependencyContainer)
-        dependencyContainer.components = [
-            firebaseAuthService,
-        ]
-    }
-    
-    override func tearDownWithError() throws {
-        dependencyContainer = nil
-        firebaseAuthService = nil
-    }
+class FirebaseAuthServiceTests: TestDependencyContainer {
     
     func test_requestOTP() {
         // Act
-        firebaseAuthService.requestOTP(phoneNumber: "") { _,_  in }
+        container.mockFirebaseAuthService.requestOTP(phoneNumber: "") { _,_  in }
         
         // Assert
-        XCTAssertEqual(firebaseAuthService.requestOTPCallCount, 1)
+        XCTAssertEqual(container.mockFirebaseAuthService.requestOTPCallCount, 1)
     }
     
     func test_signInWithCode() {
         // Act
-        firebaseAuthService.signInWithCode(code: "", verificationId: "") { _,_  in }
+        container.mockFirebaseAuthService.signInWithCode(code: "", verificationId: "") { _,_  in }
         
         // Assert
-        XCTAssertEqual(firebaseAuthService.signInWithCodeCallCount, 1)
+        XCTAssertEqual(container.mockFirebaseAuthService.signInWithCodeCallCount, 1)
     }
     
     func test_getUserIDToken() {
         // Act
-        firebaseAuthService.getUserIDToken() { _ in }
+        container.mockFirebaseAuthService.getUserIDToken() { _ in }
         
         // Assert
-        XCTAssertEqual(firebaseAuthService.getUserIDTokenCallCount, 1)
+        XCTAssertEqual(container.mockFirebaseAuthService.getUserIDTokenCallCount, 1)
     }
     
     func test_getCurrentUser() {
         // Act
-        _ = firebaseAuthService.getCurrentUser()
+        _ = container.mockFirebaseAuthService.getCurrentUser()
         
         // Assert
-        XCTAssertEqual(firebaseAuthService.getCurrentUserCallCount, 1)
+        XCTAssertEqual(container.mockFirebaseAuthService.getCurrentUserCallCount, 1)
     }
     
     func test_isUserSignedIn() {
         // Act
-        _ = firebaseAuthService.isUserSignedIn()
+        _ = container.mockFirebaseAuthService.isUserSignedIn()
         
         // Assert
-        XCTAssertEqual(firebaseAuthService.isUserSignedInCallCount, 1)
+        XCTAssertEqual(container.mockFirebaseAuthService.isUserSignedInCallCount, 1)
     }
     
     func test_signOutUser() {
         // Act
-        firebaseAuthService.signOutUser()
+        container.mockFirebaseAuthService.signOutUser()
         
         // Assert
-        XCTAssertEqual(firebaseAuthService.signOutUserCallCount, 1)
+        XCTAssertEqual(container.mockFirebaseAuthService.signOutUserCallCount, 1)
     }
 }

@@ -8,7 +8,7 @@
 @testable import UnderDogToDoList
 import XCTest
 
-class LocalStorageManagerTests: XCTestCase {
+class LocalStorageManagerTests: TestDependencyContainer {
     private var localStorageManager: LocalStorageManager!
 
     override func setUp() {
