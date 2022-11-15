@@ -27,10 +27,12 @@ class AlertService: DependencyContainer.Component, AlertServiceProtocol {
     
     func present(_ value: AlertType) {
         alertType = value
+        entity.appState.value.showAlert = true
     }
     
     func presentGenericError() {
         alertType = .genericError(genericDismissAction)
+        entity.appState.value.showAlert = true
     }
     
     func dismiss() {
@@ -53,7 +55,7 @@ extension AlertType {
         case .genericError(let action):
             return Alert(title: Text("Oops"),
                          message: Text("We encountered an error. Please try again"),
-                         dismissButton: .default(Text("OK"), action: action))
+                         dismissButton: .default(Text("OK").foregroundColor(ACCENT_COLOR), action: action))
         }
     }
 }

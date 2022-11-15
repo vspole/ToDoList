@@ -152,7 +152,7 @@ extension TaskListView {
         
         func taskItemCompletedChanged(_ taskItemId: String?, completed: Bool, completion: @escaping (Error?) -> Void) {
             guard let taskItemId = taskItemId else {
-                self?.parentViewModel.container.alertService.presentGenericError()
+                container.alertService.presentGenericError()
                 return
             }
             
@@ -181,7 +181,6 @@ extension TaskListView {
         
         private func addTaskItem() {
             guard !textFieldText.isEmpty else {
-                container.alertService.presentGenericError()
                 return
             }
             
