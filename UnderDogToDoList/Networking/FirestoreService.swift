@@ -10,34 +10,34 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 protocol FirestoreServiceProtocol: AnyObject {
-    func fetchToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void)
-    func fetchItem(uid: String, documentID: String, completion: @escaping (ToDoItemModel?, Error?) -> Void)
-    func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (Error?) -> Void)
-    func updateToDoItemText(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void)
-    func updateToDoItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void)
-    func deleteToDoItem(uid: String, documentID: String, completion: @escaping (Error?) -> Void)
+    func fetchTaskItems(uid: String, completion: @escaping ([TaskItemModel]?, Error?) -> Void)
+    func fetchTaskItem(uid: String, documentID: String, completion: @escaping (TaskItemModel?, Error?) -> Void)
+    func writeTaskItem(uid: String, taskItem: TaskItemModel, completion: @escaping (Error?) -> Void)
+    func updateTaskItemText(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void)
+    func updateTaskItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void)
+    func deleteTaskItem(uid: String, documentID: String, completion: @escaping (Error?) -> Void)
 }
 
 class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol {
     private var db: Firestore?
     
-    func fetchToDoItems(uid: String, completion: @escaping ([ToDoItemModel]?, Error?) -> Void) {
+    func fetchTaskItems(uid: String, completion: @escaping ([TaskItemModel]?, Error?) -> Void) {
         db?.collection(uid).getDocuments() { (querySnapshot, error) in
             if let error = error {
                 // TODO: Error Handling Here
                 completion(nil, error)
             } else {
                 if let querySnapshot = querySnapshot  {
-                    var toDoListItems = [ToDoItemModel]()
+                    var taksListItems = [TaskItemModel]()
                     for document in querySnapshot.documents {
                         do {
-                            toDoListItems.append(try document.data(as: ToDoItemModel.self))
+                            taksListItems.append(try document.data(as: TaskItemModel.self))
                         } catch {
                             completion(nil, error)
                             return
                         }
                     }
-                    completion(toDoListItems, nil)
+                    completion(taksListItems, nil)
                 } else {
                     completion(nil, nil)
                 }
@@ -45,36 +45,36 @@ class FirestoreService: DependencyContainer.Component, FirestoreServiceProtocol 
         }
     }
     
-    func fetchItem(uid: String, documentID: String, completion: @escaping (ToDoItemModel?, Error?) -> Void) {
-        db?.collection(uid).document(documentID).getDocument(as: ToDoItemModel.self) { result in
+    func fetchTaskItem(uid: String, documentID: String, completion: @escaping (TaskItemModel?, Error?) -> Void) {
+        db?.collection(uid).document(documentID).getDocument(as: TaskItemModel.self) { result in
             switch result {
-            case .success(let toDoItem):
-                completion(toDoItem, nil)
+            case .success(let taskItem):
+                completion(taskItem, nil)
             case .failure(let error):
                 completion(nil, error)
             }
         }
     }
     
-    func writeToDoItems(uid: String, toDoItem: ToDoItemModel, completion: @escaping (Error?) -> Void) {
-        db?.collection(uid).document(toDoItem.id).setData(toDoItem.dictionaryFormat) { error in
+    func writeTaskItem(uid: String, taskItem: TaskItemModel, completion: @escaping (Error?) -> Void) {
+        db?.collection(uid).document(taskItem.id).setData(taskItem.dictionaryFormat) { error in
             completion(error)
         }
     }
     
-    func updateToDoItemText(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void) {
-        db?.collection(uid).document(documentID).updateData([ToDoItemModel.CodingKeys.text.rawValue: text]) { error in
+    func updateTaskItemText(uid: String, documentID: String, text: String, completion: @escaping (Error?) -> Void) {
+        db?.collection(uid).document(documentID).updateData([TaskItemModel.CodingKeys.text.rawValue: text]) { error in
             completion(error)
         }
     }
     
-    func updateToDoItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void) {
-        db?.collection(uid).document(documentID).updateData([ToDoItemModel.CodingKeys.completed.rawValue: completed]) { error in
+    func updateTaskItemStatus(uid: String, documentID: String, completed: Bool, completion: @escaping (Error?) -> Void) {
+        db?.collection(uid).document(documentID).updateData([TaskItemModel.CodingKeys.completed.rawValue: completed]) { error in
             completion(error)
         }
     }
     
-    func deleteToDoItem(uid: String, documentID: String, completion: @escaping (Error?) -> Void) {
+    func deleteTaskItem(uid: String, documentID: String, completion: @escaping (Error?) -> Void) {
         db?.collection(uid).document(documentID).delete() { error in
             completion(error)
         }

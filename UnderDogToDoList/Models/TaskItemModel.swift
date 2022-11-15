@@ -1,5 +1,5 @@
 //
-//  ToDoItemModel.swift
+//  TaskItemModel.swift
 //  UnderDogToDoList
 //
 //  Created by Vishal Polepalli on 11/10/22.
@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct ToDoItemModel: Identifiable, Codable {
+struct TaskItemModel: Identifiable, Codable {
     var id: String
     var text: String
     var completed: Bool

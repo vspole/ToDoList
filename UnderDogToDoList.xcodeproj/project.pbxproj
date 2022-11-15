@@ -76,10 +76,10 @@
 		6920CC7C291D7F990037E462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6920CC7B291D7F990037E462 /* GoogleService-Info.plist */; };
 		6920CC80291D9F340037E462 /* PhoneLoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC7F291D9F340037E462 /* PhoneLoginViewModelTests.swift */; };
 		6920CC82291D9FB40037E462 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6920CC81291D9FB40037E462 /* FirebaseMessaging */; };
-		6920CC84291DA9430037E462 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC83291DA9430037E462 /* ToDoListView.swift */; };
-		6920CC89291DBE380037E462 /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC88291DBE380037E462 /* ToDoItemModel.swift */; };
+		6920CC84291DA9430037E462 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC83291DA9430037E462 /* TaskListView.swift */; };
+		6920CC89291DBE380037E462 /* TaskItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC88291DBE380037E462 /* TaskItemModel.swift */; };
 		6920CC8B2921915A0037E462 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8A2921915A0037E462 /* FirestoreService.swift */; };
-		6920CC8F2921CF480037E462 /* ToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8E2921CF480037E462 /* ToDoItemView.swift */; };
+		6920CC8F2921CF480037E462 /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6920CC8E2921CF480037E462 /* TaskItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,10 +145,10 @@
 		6920CC7B291D7F990037E462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6920CC7D291D80AC0037E462 /* UnderDogToDoList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UnderDogToDoList.entitlements; sourceTree = "<group>"; };
 		6920CC7F291D9F340037E462 /* PhoneLoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginViewModelTests.swift; sourceTree = "<group>"; };
-		6920CC83291DA9430037E462 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
-		6920CC88291DBE380037E462 /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
+		6920CC83291DA9430037E462 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		6920CC88291DBE380037E462 /* TaskItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemModel.swift; sourceTree = "<group>"; };
 		6920CC8A2921915A0037E462 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
-		6920CC8E2921CF480037E462 /* ToDoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemView.swift; sourceTree = "<group>"; };
+		6920CC8E2921CF480037E462 /* TaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,7 +406,7 @@
 		6920CC85291DBE030037E462 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6920CC88291DBE380037E462 /* ToDoItemModel.swift */,
+				6920CC88291DBE380037E462 /* TaskItemModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,7 +414,7 @@
 		6920CC8C2921CF2E0037E462 /* Full */ = {
 			isa = PBXGroup;
 			children = (
-				6920CC83291DA9430037E462 /* ToDoListView.swift */,
+				6920CC83291DA9430037E462 /* TaskListView.swift */,
 				6920CC77291D7DF00037E462 /* PhoneLoginView.swift */,
 			);
 			path = Full;
@@ -423,7 +423,7 @@
 		6920CC8D2921CF3B0037E462 /* Fragments */ = {
 			isa = PBXGroup;
 			children = (
-				6920CC8E2921CF480037E462 /* ToDoItemView.swift */,
+				6920CC8E2921CF480037E462 /* TaskItemView.swift */,
 			);
 			path = Fragments;
 			sourceTree = "<group>";
@@ -605,7 +605,7 @@
 			files = (
 				6920CC38291D69BA0037E462 /* TokenManager.swift in Sources */,
 				6920CBFF291D68840037E462 /* FirebaseAuthService.swift in Sources */,
-				6920CC84291DA9430037E462 /* ToDoListView.swift in Sources */,
+				6920CC84291DA9430037E462 /* TaskListView.swift in Sources */,
 				6920CBFB291D67790037E462 /* LocalStorageManager.swift in Sources */,
 				6920CC3A291D69FE0037E462 /* ComponentProtocol.swift in Sources */,
 				6920CBC4291D63690037E462 /* ContentView.swift in Sources */,
@@ -620,9 +620,9 @@
 				6920CBEC291D64060037E462 /* EntityProtocol.swift in Sources */,
 				6920CBF7291D67030037E462 /* DependencyContainer.swift in Sources */,
 				6920CBEF291D64A20037E462 /* DataComponent.swift in Sources */,
-				6920CC89291DBE380037E462 /* ToDoItemModel.swift in Sources */,
+				6920CC89291DBE380037E462 /* TaskItemModel.swift in Sources */,
 				6920CC6D291D7C8B0037E462 /* ScaledFont.swift in Sources */,
-				6920CC8F2921CF480037E462 /* ToDoItemView.swift in Sources */,
+				6920CC8F2921CF480037E462 /* TaskItemView.swift in Sources */,
 				6920CC7A291D7E270037E462 /* UIApplication_Extensions.swift in Sources */,
 				6920CC78291D7DF00037E462 /* PhoneLoginView.swift in Sources */,
 			);

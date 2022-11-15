@@ -1,5 +1,5 @@
 //
-//  ToDoListView.swift
+//  TaskListView.swift
 //  UnderDogToDoList
 //
 //  Created by Vishal Polepalli on 11/10/22.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ToDoListView: View {
+struct TaskListView: View {
     @StateObject var viewModel: ViewModel
     
     var body: some View {
         VStack {
             tabBar
                 .padding(.all, MARGIN_SCREEN)
-            todoItems
+            taskItemsView
             Spacer()
         }
         .overlay {
@@ -30,7 +30,7 @@ struct ToDoListView: View {
 }
 
 // MARK: Tab Bar
-extension ToDoListView {
+extension TaskListView {
     var tabBar: some View {
         HStack {
             imageButton
@@ -80,12 +80,12 @@ extension ToDoListView {
 }
 
 // MARK: Items List
-extension ToDoListView {
-    var todoItems: some View {
+extension TaskListView {
+    var taskItemsView: some View {
         ScrollView {
             LazyVStack() {
-                ForEach(viewModel.showFiltered ? viewModel.filterdToDoItems : viewModel.toDoItems) { item in
-                    ToDoItemView(viewModel: .init(parentViewModel: viewModel, toDoItem: item))
+                ForEach(viewModel.showFiltered ? viewModel.filteredTaskItems : viewModel.taskItems) { item in
+                    TaskItemView(viewModel: .init(parentViewModel: viewModel, taskItem: item))
                 }
             }
         }
@@ -93,14 +93,14 @@ extension ToDoListView {
 }
 
 // MARK: View Model
-extension ToDoListView {
+extension TaskListView {
     class ViewModel: ObservableObject {
         @Published var textFieldText = ""
         @Published var isEditing = false
         @Published var isLoading = false
         @Published var showFiltered = false
-        @Published var toDoItems = [ToDoItemModel]()
-        @Published var filterdToDoItems = [ToDoItemModel]()
+        @Published var taskItems = [TaskItemModel]()
+        @Published var filteredTaskItems = [TaskItemModel]()
         @Published var textFieldConfig:TextFieldConfiguration = .search
         @FocusState var focusedField: Bool?
         
@@ -114,15 +114,15 @@ extension ToDoListView {
             self.container = container
         }
         
-        func viewDidAppear(_ view: ToDoListView) {
-            fetchToDoListItems()
+        func viewDidAppear(_ view: TaskListView) {
+            fetchTaskItems()
         }
         
         func textFieldSubmitted() {
             if textFieldConfig == .add {
-                addToDoListItem()
+                addTaskItem()
             } else {
-                searchToDoListItems()
+                searchTaskItems()
             }
         }
         
@@ -139,83 +139,83 @@ extension ToDoListView {
             textFieldText = ""
         }
         
-        func toDoItemTextChanged(_ toDoItemId: String?, newText: String, completion: @escaping (Error?) -> Void) {
-            guard let toDoItemId = toDoItemId else {
+        func taskItemTextChanged(_ taskItemId: String?, newText: String, completion: @escaping (Error?) -> Void) {
+            guard let taskItemId = taskItemId else {
                 // TODO: Error Handling Here
                 return
             }
             
-            container.firestoreService.updateToDoItemText(uid: uid, documentID: toDoItemId, text: newText) {  error in
+            container.firestoreService.updateTaskItemText(uid: uid, documentID: taskItemId, text: newText) {  error in
                 completion(error)
             }
         }
         
-        func toDoItemCompletedChanged(_ toDoItemId: String?, completed: Bool, completion: @escaping (Error?) -> Void) {
-            guard let toDoItemId = toDoItemId else {
+        func taskItemCompletedChanged(_ taskItemId: String?, completed: Bool, completion: @escaping (Error?) -> Void) {
+            guard let taskItemId = taskItemId else {
                 // TODO: Error Handling Here
                 return
             }
             
-            container.firestoreService.updateToDoItemStatus(uid: uid, documentID: toDoItemId, completed: completed) {  error in
+            container.firestoreService.updateTaskItemStatus(uid: uid, documentID: taskItemId, completed: completed) {  error in
                 completion(error)
             }
         }
         
-        func toDoItemDelete(_ toDoItemId: String?) {
+        func taskItemDelete(_ taskItemId: String?) {
             isLoading = true
             
-            guard let toDoItemId = toDoItemId, let index = toDoItems.lazy.firstIndex(where: { $0.id == toDoItemId }) else {
+            guard let taskItemId = taskItemId, let index = taskItems.lazy.firstIndex(where: { $0.id == taskItemId }) else {
                 // TODO: Error Handling Here
                 return
             }
             
-            container.firestoreService.deleteToDoItem(uid: uid, documentID: toDoItemId) { [weak self] error in
+            container.firestoreService.deleteTaskItem(uid: uid, documentID: taskItemId) { [weak self] error in
                 if error != nil {
                     // TODO: Error Handling Here
                 } else {
-                    self?.toDoItems.remove(at: index)
+                    self?.taskItems.remove(at: index)
                 }
                 self?.isLoading = false
             }
         }
         
-        private func addToDoListItem() {
+        private func addTaskItem() {
             guard !textFieldText.isEmpty else {
                 // TODO: Error Handling Here
                 return
             }
             
             isLoading = true
-            let toDoItem = ToDoItemModel(text: textFieldText, completed: false)
-            container.firestoreService.writeToDoItems(uid: uid, toDoItem: toDoItem) { [weak self] (error) in
+            let newTaskItem = TaskItemModel(text: textFieldText, completed: false)
+            container.firestoreService.writeTaskItem(uid: uid, taskItem: newTaskItem) { [weak self] (error) in
                 if error != nil {
                     // TODO: Error handling here
                 }
-                self?.toDoItems.insert(toDoItem, at: 0)
+                self?.taskItems.insert(newTaskItem, at: 0)
                 self?.textFieldText = ""
                 self?.isLoading = false
             }
         }
         
-        private func fetchToDoListItems() {
+        private func fetchTaskItems() {
             isLoading = true
-            container.firestoreService.fetchToDoItems(uid: uid) { [weak self] (items, error) in
+            container.firestoreService.fetchTaskItems(uid: uid) { [weak self] (items, error) in
                 if error != nil {
                     // TODO: Error handling here
                 } else if let items = items {
-                    self?.toDoItems = items.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
+                    self?.taskItems = items.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
                 }
                 self?.isLoading = false
             }
         }
         
-        private func searchToDoListItems() {
+        private func searchTaskItems() {
             guard !textFieldText.isEmpty else {
                 showFiltered = false
                 return
             }
             
-            filterdToDoItems = toDoItems.filter { $0.text.lowercased().contains(textFieldText.lowercased())}
+            filteredTaskItems = taskItems.filter { $0.text.lowercased().contains(textFieldText.lowercased())}
             showFiltered = true
         }
     }

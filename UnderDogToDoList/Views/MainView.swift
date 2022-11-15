@@ -14,7 +14,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             if viewModel.isUserLoggedIn {
-                ToDoListView(viewModel: .init(container: viewModel.container))
+                TaskListView(viewModel: .init(container: viewModel.container))
             } else {
                 PhoneLoginView(viewModel: .init(container: viewModel.container, mainViewModel: viewModel))
             }

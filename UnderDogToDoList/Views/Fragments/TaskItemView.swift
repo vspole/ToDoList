@@ -1,5 +1,5 @@
 //
-//  ToDoItemView.swift
+//  TaskItemView.swift
 //  UnderDogToDoList
 //
 //  Created by Vishal Polepalli on 11/13/22.
@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct ToDoItemView: View {
+struct TaskItemView: View {
     @StateObject var viewModel: ViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: SIZE_PADDING_XS) {
             if viewModel.isEditing {
-                TextField(viewModel.toDoItem.text, text: $viewModel.textFieldText, onEditingChanged: { editingChanged in
+                TextField(viewModel.taskItem.text, text: $viewModel.textFieldText, onEditingChanged: { editingChanged in
                     if !editingChanged {
                         viewModel.isEditing = false
                         viewModel.textFieldSubmitted()
@@ -22,17 +22,17 @@ struct ToDoItemView: View {
                 })
                     .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
             } else {
-                Text(viewModel.toDoItem.text)
+                Text(viewModel.taskItem.text)
                     .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
             }
             HStack {
-                Text(viewModel.toDoItem.dateString)
+                Text(viewModel.taskItem.dateString)
                     .scaledFont(type: .quickSandRegular, size: 13, color: TEXT_COLOR)
                 Spacer()
                 Button {
                     viewModel.completedButtonPressed()
                 } label: {
-                    Image(systemName: viewModel.toDoItem.completed ? "checkmark.circle.fill" : "checkmark.circle")
+                    Image(systemName: viewModel.taskItem.completed ? "checkmark.circle.fill" : "checkmark.circle")
                         .foregroundColor(ACCENT_COLOR)
                 }
                 Button {
@@ -53,20 +53,20 @@ struct ToDoItemView: View {
     }
 }
 
-extension ToDoItemView {
+extension TaskItemView {
     class ViewModel: ObservableObject {
-        @Published var toDoItem: ToDoItemModel
+        @Published var taskItem: TaskItemModel
         @Published var isEditing = false
         @Published var textFieldText = ""
         
         var textColor: Color {
-            toDoItem.completed ? COMPLETED_TEXT_COLOR : TEXT_COLOR
+            taskItem.completed ? COMPLETED_TEXT_COLOR : TEXT_COLOR
         }
         
-        unowned var parentViewModel: ToDoListView.ViewModel
+        unowned var parentViewModel: TaskListView.ViewModel
         
-        init(parentViewModel: ToDoListView.ViewModel, toDoItem: ToDoItemModel) {
-            self.toDoItem = toDoItem
+        init(parentViewModel: TaskListView.ViewModel, taskItem: TaskItemModel) {
+            self.taskItem = taskItem
             self.parentViewModel = parentViewModel
         }
         
@@ -76,9 +76,9 @@ extension ToDoItemView {
         }
         
         func textFieldSubmitted() {
-            if !textFieldText.isEmpty && textFieldText != toDoItem.text {
+            if !textFieldText.isEmpty && textFieldText != taskItem.text {
                 parentViewModel.isLoading = true
-                parentViewModel.toDoItemTextChanged(toDoItem.id, newText: textFieldText) { [weak self] error in
+                parentViewModel.taskItemTextChanged(taskItem.id, newText: textFieldText) { [weak self] error in
                     if error != nil {
                         // TODO: Error handling here
                     } else {
@@ -86,7 +86,7 @@ extension ToDoItemView {
                             // TODO: Error handling here
                             return
                         }
-                        self?.toDoItem.text = newText
+                        self?.taskItem.text = newText
                         self?.textFieldText = ""
                     }
                     self?.parentViewModel.isLoading = false
@@ -96,19 +96,19 @@ extension ToDoItemView {
         
         func completedButtonPressed() {
             parentViewModel.isLoading = true
-            let newCompleted = !toDoItem.completed
-            parentViewModel.toDoItemCompletedChanged(toDoItem.id, completed: newCompleted) { [weak self] error in
+            let newCompleted = !taskItem.completed
+            parentViewModel.taskItemCompletedChanged(taskItem.id, completed: newCompleted) { [weak self] error in
                 if error != nil {
                     // TODO: Error handling here
                 } else {
-                    self?.toDoItem.completed = newCompleted
+                    self?.taskItem.completed = newCompleted
                 }
                 self?.parentViewModel.isLoading = false
             }
         }
         
         func deleteButtonPressed() {
-            parentViewModel.toDoItemDelete(toDoItem.id)
+            parentViewModel.taskItemDelete(taskItem.id)
         }
     }
 }
