@@ -20,14 +20,14 @@ struct TaskItemView: View {
                         viewModel.textFieldSubmitted()
                     }
                 })
-                    .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
+                    .scaledFont(type: .quickSandBold, size: TEXT_FONT_MEDIUM, color: viewModel.textColor)
             } else {
                 Text(viewModel.taskItem.text)
-                    .scaledFont(type: .quickSandBold, size: 17, color: viewModel.textColor)
+                    .scaledFont(type: .quickSandBold, size: TEXT_FONT_MEDIUM, color: viewModel.textColor)
             }
             HStack {
                 Text(viewModel.taskItem.dateString)
-                    .scaledFont(type: .quickSandRegular, size: 13, color: TEXT_COLOR)
+                    .scaledFont(type: .quickSandRegular, size: TEXT_FONT_SMALL, color: TEXT_COLOR)
                 Spacer()
                 Button {
                     viewModel.completedButtonPressed()
@@ -51,6 +51,10 @@ struct TaskItemView: View {
             viewModel.isEditing = true
         }
     }
+}
+
+extension TaskListView {
+    
 }
 
 extension TaskItemView {

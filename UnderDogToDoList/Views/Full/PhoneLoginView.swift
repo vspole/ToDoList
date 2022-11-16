@@ -57,7 +57,7 @@ extension PhoneLoginView {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(viewModel.isButtonDisabled ? .gray : ACCENT_COLOR)
                 Text(viewModel.receivedVerificationID ? "Sign In" : "Request Code")
-                    .scaledFont(type: .quickSandSemiBold, size: 17, color: TEXT_COLOR)
+                    .scaledFont(type: .quickSandSemiBold, size: TEXT_FONT_MEDIUM, color: TEXT_COLOR)
                 if viewModel.isLoading {
                     ProgressView()
                 }
@@ -70,10 +70,10 @@ extension PhoneLoginView {
     
     var codeTextField: some View {
         ZStack() {
-            RoundedRectangle(cornerRadius: 10).stroke(ACCENT_COLOR)
+            RoundedRectangle(cornerRadius: CORNER_RADIUS).stroke(ACCENT_COLOR)
             
             TextField("", text: $viewModel.verificationCode)
-                .scaledFont(type: .quickSandSemiBold, size: 20, color: TEXT_COLOR)
+                .scaledFont(type: .quickSandSemiBold, size: TEXT_FONT_LARGE, color: TEXT_COLOR)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, SIZE_PADDING_XS)
                 .keyboardType(.phonePad)
@@ -88,7 +88,7 @@ extension PhoneLoginView {
             
             if viewModel.verificationCode.isEmpty && !viewModel.isEditing {
                 Text("Verification Code: ")
-                    .scaledFont(type: .quickSandSemiBold, size: 20, color: TEXT_COLOR)
+                    .scaledFont(type: .quickSandSemiBold, size: TEXT_FONT_LARGE, color: TEXT_COLOR)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, SIZE_PADDING_XS)
             }
@@ -99,10 +99,10 @@ extension PhoneLoginView {
     
     var phoneTextField: some View {
         ZStack() {
-            RoundedRectangle(cornerRadius: 10).stroke(ACCENT_COLOR)
+            RoundedRectangle(cornerRadius: CORNER_RADIUS).stroke(ACCENT_COLOR)
             
             TextField("", text: $viewModel.phoneNumber)
-                .scaledFont(type: .quickSandSemiBold, size: 20, color: TEXT_COLOR)
+                .scaledFont(type: .quickSandSemiBold, size: TEXT_FONT_LARGE, color: TEXT_COLOR)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, SIZE_PADDING_XS)
                 .keyboardType(.phonePad)
@@ -117,7 +117,7 @@ extension PhoneLoginView {
             
             if viewModel.phoneNumber.isEmpty && !viewModel.isEditing {
                 Text("Phone Number: ")
-                    .scaledFont(type: .quickSandSemiBold, size: 20, color: TEXT_COLOR)
+                    .scaledFont(type: .quickSandSemiBold, size: TEXT_FONT_LARGE, color: TEXT_COLOR)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, SIZE_PADDING_XS)
             }
