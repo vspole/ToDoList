@@ -84,6 +84,7 @@
 		69C9D0562923682400953E0E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 69C9D0552923682400953E0E /* FirebaseFirestore */; };
 		69C9D05829244C0900953E0E /* TestDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05729244C0900953E0E /* TestDependencyContainer.swift */; };
 		69C9D05A2924B93000953E0E /* MockFirestroreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D0592924B93000953E0E /* MockFirestroreService.swift */; };
+		69C9D05C2924CDFD00953E0E /* TaskListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05B2924CDFD00953E0E /* TaskListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		69C9D05329235B1B00953E0E /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		69C9D05729244C0900953E0E /* TestDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependencyContainer.swift; sourceTree = "<group>"; };
 		69C9D0592924B93000953E0E /* MockFirestroreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirestroreService.swift; sourceTree = "<group>"; };
+		69C9D05B2924CDFD00953E0E /* TaskListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				6920CC7F291D9F340037E462 /* PhoneLoginViewModelTests.swift */,
+				69C9D05B2924CDFD00953E0E /* TaskListViewModelTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				6920CC80291D9F340037E462 /* PhoneLoginViewModelTests.swift in Sources */,
 				69C9D05829244C0900953E0E /* TestDependencyContainer.swift in Sources */,
 				6920CC43291D71300037E462 /* MockTokenManager.swift in Sources */,
+				69C9D05C2924CDFD00953E0E /* TaskListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
