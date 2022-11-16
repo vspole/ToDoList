@@ -8,24 +8,12 @@
 @testable import UnderDogToDoList
 import XCTest
 
-class PhoneLoginViewModelTests: XCTestCase {
-    var container: DependencyContainer!
-    var dataComponent: DataComponent!
-    var alertService: AlertService!
-    var firebaseAuthService: MockFirebaseAuthService!
+class PhoneLoginViewModelTests: TestDependencyContainer {
     var phoneViewModel: PhoneLoginView.ViewModel!
     var mainViewModel: MainView.ViewModel!
     
     override func setUpWithError() throws {
-        container = DependencyContainer()
-        firebaseAuthService = MockFirebaseAuthService(container: container)
-        dataComponent = DataComponent(container: container)
-        alertService = AlertService(container: container)
-        container.components = [
-            firebaseAuthService,
-            dataComponent,
-            alertService
-        ]
+        container = DependencyContainer().createTestDependencyContainer()
         mainViewModel = .init(container: container)
         phoneViewModel = .init(container: container, mainViewModel: mainViewModel)
     }

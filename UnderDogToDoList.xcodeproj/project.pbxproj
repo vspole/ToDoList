@@ -333,7 +333,6 @@
 				6920CC42291D71300037E462 /* MockTokenManager.swift */,
 				6920CC44291D716F0037E462 /* MockLocalStorageManager.swift */,
 				6920CC48291D71AC0037E462 /* MockContainer.swift */,
-				6920CC4C291D727E0037E462 /* MockFirebaseAuthService.swift */,
 				69C9D0592924B93000953E0E /* MockFirestroreService.swift */,
 			);
 			path = Mocks;
@@ -343,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				6920CC4F291D74A80037E462 /* FirebaseAuthServiceTests.swift */,
+				6920CC4C291D727E0037E462 /* MockFirebaseAuthService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
