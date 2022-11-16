@@ -28,7 +28,7 @@ extension DependencyContainer {
             AlertService(container: container),
             DataComponent(container: container),
             MockFirebaseAuthService(container: container),
-            FirestoreService(container: container),
+            MockFirestoreService(container: container),
             DataComponent(container: container),
             MockTokenManager(),
             AlertService(container: container),
@@ -43,6 +43,7 @@ extension DependencyContainer {
 
 extension DependencyContainer {
     var mockFirebaseAuthService: MockFirebaseAuthService { getComponent() }
+    var mockFirestoreService: MockFirestoreService { getComponent() }
     var mockTokenManager: MockTokenManager { getComponent() }
     var mockLocalStorageManager: MockLocalStorageManager { getComponent() }
 }
