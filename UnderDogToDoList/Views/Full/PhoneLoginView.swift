@@ -203,9 +203,11 @@ extension PhoneLoginView {
                 if let error = error {
                     print("Error: ", error.localizedDescription)
                     self?.container.alertService.presentGenericError()
+                    self?.container.firebaseAuthService.signOutUser()
                     return
                 }
                 self?.getToken()
+                self?.container.appState[\.userData.user] = authDataResult?.user
             }
         }
         

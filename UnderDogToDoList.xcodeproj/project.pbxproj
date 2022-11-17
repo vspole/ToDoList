@@ -85,6 +85,7 @@
 		69C9D05829244C0900953E0E /* TestDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05729244C0900953E0E /* TestDependencyContainer.swift */; };
 		69C9D05A2924B93000953E0E /* MockFirestroreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D0592924B93000953E0E /* MockFirestroreService.swift */; };
 		69C9D05C2924CDFD00953E0E /* TaskListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05B2924CDFD00953E0E /* TaskListViewModelTests.swift */; };
+		69C9D05E29269FA000953E0E /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C9D05D29269FA000953E0E /* UserDefaultKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		69C9D05729244C0900953E0E /* TestDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependencyContainer.swift; sourceTree = "<group>"; };
 		69C9D0592924B93000953E0E /* MockFirestroreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirestroreService.swift; sourceTree = "<group>"; };
 		69C9D05B2924CDFD00953E0E /* TaskListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModelTests.swift; sourceTree = "<group>"; };
+		69C9D05D29269FA000953E0E /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +387,7 @@
 			children = (
 				6920CC6E291D7CB00037E462 /* Size.swift */,
 				6920CC70291D7CBA0037E462 /* Color.swift */,
+				69C9D05D29269FA000953E0E /* UserDefaultKeys.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				6920CBC4291D63690037E462 /* ContentView.swift in Sources */,
 				69C9D05429235B1B00953E0E /* AlertService.swift in Sources */,
 				6920CBF1291D65D70037E462 /* StartUpProtocol.swift in Sources */,
+				69C9D05E29269FA000953E0E /* UserDefaultKeys.swift in Sources */,
 				6920CC8B2921915A0037E462 /* FirestoreService.swift in Sources */,
 				6920CBF5291D665A0037E462 /* AppState.swift in Sources */,
 				6920CBC2291D63690037E462 /* UnderDogToDoListApp.swift in Sources */,

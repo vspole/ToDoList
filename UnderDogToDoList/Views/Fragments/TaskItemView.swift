@@ -14,12 +14,17 @@ struct TaskItemView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: SIZE_PADDING_XS) {
             if viewModel.isEditing {
-                TextField(viewModel.taskItem.text, text: $viewModel.textFieldText, onEditingChanged: { editingChanged in
-                    if !editingChanged {
-                        viewModel.isEditing = false
-                        viewModel.textFieldSubmitted()
+                TextField("", text: $viewModel.textFieldText, axis: .vertical)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Button("Save") {
+                                viewModel.isEditing = false
+                                viewModel.textFieldSubmitted()
+                            }
+                            .foregroundColor(ACCENT_COLOR)
+                            Spacer()
+                        }
                     }
-                })
                     .scaledFont(type: .quickSandBold, size: TEXT_FONT_MEDIUM, color: viewModel.textColor)
             } else {
                 Text(viewModel.taskItem.text)
@@ -72,6 +77,7 @@ extension TaskItemView {
         init(parentViewModel: TaskListView.ViewModel, taskItem: TaskItemModel) {
             self.taskItem = taskItem
             self.parentViewModel = parentViewModel
+            self.textFieldText = taskItem.text
         }
         
         func resetTextField() {
@@ -91,7 +97,6 @@ extension TaskItemView {
                             return
                         }
                         self?.taskItem.text = newText
-                        self?.textFieldText = ""
                     }
                     self?.parentViewModel.isLoading = false
                 }

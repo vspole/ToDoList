@@ -54,7 +54,13 @@ extension MainView {
         }
         
         func viewDidAppear(_ view: MainView) {
-            isUserLoggedIn = container.appState.value.isLoggedIn
+            var hasRunBefore = container.localStorageManager.insecurelyRetrieveData(forType: Bool.self, withKey: HAS_RUN_BEFORE) as? Bool ?? false
+            if hasRunBefore {
+                isUserLoggedIn = container.appState.value.isLoggedIn
+            } else {
+                container.firebaseAuthService.signOutUser()
+                container.localStorageManager.insecurelyStore(data: true, forKey: HAS_RUN_BEFORE)
+            }
         }
     }
 }
